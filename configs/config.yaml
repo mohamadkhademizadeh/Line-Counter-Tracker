@@ -1,0 +1,17 @@
+detector:
+  backend: auto        # auto|yolo|motion
+  model_path: models/yolov8n.pt
+  conf: 0.25
+  classes: []          # empty -> all classes
+tracker:
+  max_age: 30          # frames to keep a lost track
+  iou_thresh: 0.3
+counting:
+  zones:               # polygon zones (list of points)
+    - {name: "Zone A", points: [[100,100],[500,100],[500,400],[100,400]]}
+  lines:               # counting lines (p1->p2) for directional crossings
+    - {name: "Line1", p1: [200,200], p2: [600,200], direction: "up"}  # up|down|both
+  debounce: 15         # frames before a track can re-trigger the same zone
+video:
+  resize_width: 960
+  draw: true
